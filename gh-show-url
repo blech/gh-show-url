@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if ! type -p jq >/dev/null; then
+  echo "jq not found" >&2
+  exit 1
+fi
+
+exec gh pr view --json url | jq -r .url
